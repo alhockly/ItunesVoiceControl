@@ -28,7 +28,7 @@ public class Main {
     String itunesmusicdir ="E:/Music/iTunes/iTunes Media/Music";
     String itunesprogdir="C:\\Program Files\\iTunes\\iTunes.exe";
     File[] artistlist;
-    List<File> possiblesongs;
+
     Waitclass waitclass;
     private boolean threadstarted;
 
@@ -107,32 +107,31 @@ public class Main {
             String song = output.substring(output.indexOf("play")+4,output.indexOf("by")).trim();
             String artist = output.substring(output.indexOf("by")+2,output.length()).trim();
             waitclass.song=song;
+            waitclass.artist=artist;
             if(song.equals("") || artist.equals("")) {
             }
             else{
 
                 for(int i=0;i<artistlist.length;i++){
                     //System.out.println(artistlist[i].getName());
-                    if(artist.equals(artistlist[i].getName().toLowerCase())){
+                    if(artist.equals(artistlist[i].getName().toLowerCase().replaceAll("$","s"))){
                         List<File> songlist=new ArrayList<>();
-                        System.out.println("playing " + song + " by " + artist);
+
                         File[] albums = artistlist[i].listFiles();
                         for(File album: albums){
                             File[] songs = album.listFiles();
                             for(File track:songs){
                                 songlist.add(track);
-                                if(track.getName().toLowerCase().contains(song)){
+                                if(track.getName().toLowerCase().replaceAll(".","").contains(song)){
                                     System.out.println("Defo matches "+track.getName());
-                                    waitclass.possiblesongs.add(track);
+
                                     waitclass.openfile(track);
                                     return;
                                 }
                             }
                         }
-                        ///choose the closest out of the list?
+                        ///add songs containing search to list of possible songs
                         for(File maybe:songlist){
-                            String test=maybe.getName().toLowerCase().replace(" ","");
-                            String test2=song.replace(" ","");
                             if(maybe.getName().toLowerCase().replace(" ","").contains(song.replace(" ",""))){
                                 System.out.println("could be "+maybe);
                                 waitclass.possiblesongs.add(maybe);
@@ -142,8 +141,7 @@ public class Main {
                         //artist doesnt match
 
 
-                        ///Make full list of all songs?
-                        CompareAgainstall(song);
+
 
                 }
 
@@ -155,42 +153,10 @@ public class Main {
 
     }
 
-    void CompareAgainstall(String song){
-        List<File> allsongs= ListOfAllSongs(new File(itunesmusicdir));
-        //System.out.println(allsongs);
-        for(File track:allsongs){
-            if(track.getName().toLowerCase().replace(" ","").contains(song.toLowerCase().replace(" ",""))){
-                //System.out.println("out of all songs maybe "+track.getName());
-                waitclass.possiblesongs.add(track);
-                //openfile(track);
-                //return;
-            }
-        }
-    }
-
-
-    List<File> ListOfAllSongs(File dir){
-        List<File> songlist = new ArrayList<>();
-
-        File[] artists = dir.listFiles();
-        for(File artist:artists){
-            File[] albums=artist.listFiles();
-            for(File album:albums){
-                File[] songs=album.listFiles();
-                try {
-                    songlist.addAll(Arrays.asList(songs));
-                }catch (Exception e){
-
-                }
-            }
-        }
 
 
 
 
-
-        return  songlist;
-    }
 
 
 
