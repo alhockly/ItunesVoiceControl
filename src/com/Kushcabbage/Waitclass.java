@@ -93,7 +93,7 @@ public class Waitclass implements Runnable {
                 //implement super-loose condition
                 for(String word:song.split(" ")){
                     if(trackname.contains(word.toLowerCase())){
-                        System.out.println("this song by correct artist and matching a word in track name");
+                        System.out.println("this song by correct artist and matching a single word in track name");
                         openfile(track);
                         return;
                     }
