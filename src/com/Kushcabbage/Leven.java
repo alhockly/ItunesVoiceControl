@@ -31,8 +31,11 @@ public class Leven {
     String itunesprogdir="C:\\Program Files\\iTunes\\iTunes.exe";
     File[] artistlist;
     List<Song> possiblesongs=new ArrayList<>();
-    Waitclass waitclass;
-    private boolean threadstarted;
+    String inputsong,inputartist;
+
+
+    public File itunesmusicfolder;
+
 
     public static void main(String[] args) {
         new Leven();
@@ -41,11 +44,11 @@ public class Leven {
      * Constructor
      */
     public Leven() {
-        waitclass = new Waitclass();
+
         System.out.println("leven method");
 
+        itunesmusicfolder=new File(itunesmusicdir);
 
-                //ListOfAllSongs(new File(itunesmusicdir));
         recursiveFiles(new File(itunesmusicdir),possiblesongs);
         File folder=new File(itunesmusicdir);
         artistlist= folder.listFiles();
@@ -90,52 +93,76 @@ public class Leven {
 
 
         if(output.contains("play")&&output.contains("by")) {
-            String song = output.substring(output.indexOf("play")+4,output.indexOf("by")).trim();
-            String artist = output.substring(output.indexOf("by")+2,output.length()).trim();
-
-            if(song.equals("") || artist.equals("")) {
+            try {
+                TimeUnit.MILLISECONDS.sleep(60);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            else{
+            inputsong = output.substring(output.indexOf("play") + 4, output.indexOf("by")).trim();
+            inputartist = output.substring(output.indexOf("by") + 2, output.length()).trim();
 
-                for(Song track:possiblesongs){
-                    float score=0;
-                    String trackname = track.track.getName().toLowerCase().substring(0, track.track.getName().length() - 4).trim().replace(".","");
-                    String artistname = track.artist.getName().toLowerCase().trim();
+            if (!inputsong.equals("") && !inputartist.equals("")) {
 
-                    score=calculate(removetextinbrackets(trackname),song);
-                    score+=calculate(track.artist.getName(),artist);
-                    if(trackname.length()>1){
-                    if(trackname.substring(0,1).toLowerCase().equals(song.substring(0,1).toLowerCase()) && artistname.equals(artist.toLowerCase())){
-                        score-=35;
+                for (Song track : possiblesongs) {
+                    float score = 0;
+                    //sanitised values - you cant say ( . & % )
+                    String trackname = track.track.getName().toLowerCase().substring(0, track.track.getName().length() - 4).trim();
+                    trackname = trackname.replace(".", "").replace("&", "and").replace("%", "percent");
+                    String artistname = track.artist.toLowerCase().trim();
+                    if (artistname.contains("feat")) {
+                        artistname = artistname.substring(0, artistname.indexOf("feat"));
                     }
+                    if (artistname.contains("ft")) {
+                        artistname = artistname.substring(0, artistname.indexOf("ft"));
                     }
-                    track.score=score;
-                    //System.out.println("");
-                }
 
-                System.out.println("done");
-                Collections.sort(possiblesongs, new LevenComparator());
-                System.out.println("");
+                    score = calculate(removetextinbrackets(trackname), inputsong);  //levenshtein distance score
+                    score += calculate(artistname, inputartist) * 1.5;        //potentially multiply this score by some value before adding to introduce weighting
 
-                for(int i=0;i<possiblesongs.size();i++){
-                    for(String word:song.split(" ")){
-                        String name=removetextinbrackets(possiblesongs.get(i).track.getName().toLowerCase());
-                        if(name.contains(word.toLowerCase())){
-                            //System.out.println("this song by correct artist and matching a single word in track name");
-                            possiblesongs.get(i).score-=20;
-                            //return;
+                    //if first letter of track==first letter of track said. maybe should use first 2 letters
+                    if (trackname.length() > 1 && trackname.substring(0, 2).toLowerCase().equals(inputsong.substring(0, 2).toLowerCase())) {
+                        score -= 35;  //this is such a random value, i really dk what to say
+                    }
+                    if (trackname.equals(inputsong)) {
+                        score -= 40;
+                    }
+                    if (artistname.equals(inputartist.toLowerCase())) {     ///Exact title and artist match!  (should probs be worth a lot of points)
+                        score -= 40;
+                    }
+
+
+                    track.score = score;
+
+
+                    for (int i = 0; i < possiblesongs.size(); i++) {
+                        for (String word : inputsong.split(" ")) {
+                            String name = removetextinbrackets(possiblesongs.get(i).track.getName().toLowerCase());
+                            //minus 20 eveerytime a word in input matches a word in trackname
+                            if (name.contains(word.toLowerCase())) {
+                                possiblesongs.get(i).score -= 20;
+                                //return;
+                            }
                         }
-                    }
-                    if(possiblesongs.get(i).artist.getName().toLowerCase().contains(artist.toLowerCase())){         //if artist contains
-                        possiblesongs.get(i).score-=20;
+                        //if track artist name contains input artist
+                        if (possiblesongs.get(i).artist.toLowerCase().contains(inputartist.toLowerCase())) {         //if artist contains
+                            possiblesongs.get(i).score -= 20;
+                        }
+
                     }
 
+                    Collections.sort(possiblesongs, new LevenComparator());
+                    if (possiblesongs.get(0).score > 0) {                           //by this point there should be some negative values in list
+                        System.out.println("\u001B[31m" + "not sure... maybe" + possiblesongs.get(0));
+                        try {
+                            TimeUnit.SECONDS.sleep(20);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.exit(0);
+                    } else {
+                        openfile(possiblesongs.get(0));
+                    }
                 }
-
-                Collections.sort(possiblesongs, new LevenComparator());
-                System.out.println("");
-                openfile(possiblesongs.get(0).track);
-
             }
         }
         else{
@@ -159,9 +186,9 @@ public class Leven {
     }
 
 
-    void openfile(File track){
-        System.out.println("\u001B[36m"+"Playing "+track.getName().substring(0,track.getName().length()-4)+" by "+track.getParentFile().getParentFile().getName()+"\u001B[0m");
-        ProcessBuilder pb = new ProcessBuilder(itunesprogdir, track.getPath());
+    void openfile(Song track){
+        System.out.println("\u001B[36m"+"Playing "+track.track.getName().substring(0,track.track.getName().length()-4)+" by "+track.track.getParentFile().getParentFile().getName()+"\u001B[0m"+" score: "+track.score);
+        ProcessBuilder pb = new ProcessBuilder(itunesprogdir, track.track.getPath());
         pb.directory(new File("C:/"));
         pb.redirectErrorStream(true);
         try {
@@ -178,6 +205,9 @@ public class Leven {
 
 
     }
+
+
+    ////////completely copied algorithms for levnstehin vals/////
 
     static int calculate(String x, String y) {
         int[][] dp = new int[x.length() + 1][y.length() + 1];
@@ -210,32 +240,8 @@ public class Leven {
                 .min().orElse(Integer.MAX_VALUE);
     }
 
-    List<Song> ListOfAllSongs(File dir){
-        int i=0;
-        File lastalbum=null;
-        List<Song> songlist = new ArrayList<>();
-        try {
-            File[] artists = dir.listFiles();
-            for (File artist : artists) {
-                File[] albums = artist.listFiles();
-                for (File album : albums) {
-                    File[] songs = album.listFiles();
-                    lastalbum=album;
-                    for (i=0;i<songs.length;i++) {
 
-                        songlist.add(new Song(songs[i], songs[i].getParentFile().getParentFile(), 0));
-
-                    }
-
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println(i+lastalbum.getName());
-
-        }
-        return  songlist;
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////
 
 
     void recursiveFiles(File start, List<Song> possiblesongs){
@@ -245,10 +251,11 @@ public class Leven {
                 recursiveFiles(item,possiblesongs);
             }
             if(item.isFile()){
-                if(item.getName().substring(item.getName().length()-4).contains("png") || item.getName().substring(item.getName().length()-4).contains("jpg")){
+                ////ignore .png and .jpgs
+                if(item.getName().toLowerCase().contains(".png") || item.getName().toLowerCase().contains(".jpg")){
 
                 }else {
-                    possiblesongs.add(new Song(item, item.getParentFile().getParentFile(), 0));
+                    possiblesongs.add(new Song(item,itunesmusicfolder));
                 }
             }
         }

@@ -41,10 +41,7 @@ public class Main {
     public Main() {
         waitclass = new Waitclass();
 
-
-
-        File folder=new File(itunesmusicdir);
-        artistlist= folder.listFiles();
+        artistlist= new File(itunesmusicdir).listFiles();
         //Duplex Configuration
         duplex.setLanguage("en");
 

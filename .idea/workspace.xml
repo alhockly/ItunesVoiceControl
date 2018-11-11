@@ -18,46 +18,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Main.java">
+      <file leaf-file-name="Song.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Song.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="949">
-              <caret line="158" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
+            <state relative-caret-position="273">
+              <caret line="28" column="61" lean-forward="false" selection-start-line="28" selection-start-column="61" selection-end-line="28" selection-end-column="61" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1042#1043#0" expanded="true" />
-                <element signature="e#1068#1069#0" expanded="true" />
+                <element signature="e#574#575#0" expanded="true" />
+                <element signature="e#643#644#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MANIFEST.MF" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/META-INF/MANIFEST.MF">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" column="27" lean-forward="false" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Waitclass.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Waitclass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="187" column="5" lean-forward="false" selection-start-line="169" selection-start-column="4" selection-end-line="187" selection-end-column="5" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -65,47 +34,51 @@
       <file leaf-file-name="Leven.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Leven.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="136" column="0" lean-forward="false" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+            <state relative-caret-position="228">
+              <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1158#1159#0" expanded="true" />
-                <element signature="e#1185#1186#0" expanded="true" />
-                <element signature="e#6883#6884#0" expanded="true" />
-                <element signature="e#6920#6921#0" expanded="true" />
+                <element signature="e#8576#8577#0" expanded="true" />
+                <element signature="e#8613#8614#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GSpeechDuplex.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/github/goxr3plus/java-google-speech-api/V2.1/java-google-speech-api-V2.1-sources.jar!/com/darkprograms/speech/recognizer/GSpeechDuplex.java">
+      <file leaf-file-name="FileDispatcherImpl.class" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/jre/lib/rt.jar!/sun/nio/ch/FileDispatcherImpl.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="237">
-              <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LevenComparator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/LevenComparator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Song.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Song.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="111" column="22" lean-forward="false" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
               <folding>
-                <element signature="e#334#335#0" expanded="true" />
-                <element signature="e#396#397#0" expanded="true" />
+                <marker date="1524971514657" expanded="false" signature="0:104" ph="/.../" />
+                <marker date="1524971514657" expanded="false" signature="134:382" ph="..." />
+                <marker date="1524971514657" expanded="false" signature="556:567" ph=" { " />
+                <marker date="1524971514657" expanded="false" signature="586:592" ph=" }" />
+                <marker date="1524971514657" expanded="false" signature="618:629" ph=" { " />
+                <marker date="1524971514657" expanded="false" signature="641:647" ph=" }" />
+                <marker date="1524971514657" expanded="false" signature="680:691" ph=" { " />
+                <marker date="1524971514657" expanded="false" signature="703:709" ph=" }" />
+                <marker date="1524971514657" expanded="true" signature="785:832" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="920:974" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="1052:1100" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="1177:1238" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="1327:1382" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="1461:1523" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="1593:1635" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="1705:1750" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="1806:1841" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="1946:2005" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="2086:2129" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="2186:2215" ph="{...}" />
+                <marker date="1524971514657" expanded="true" signature="2296:2560" ph="{...}" />
+                <marker date="1524971514657" expanded="false" signature="2619:2630" ph=" { " />
+                <marker date="1524971514657" expanded="false" signature="2675:2681" ph=" }" />
+                <marker date="1524971514657" expanded="false" signature="2732:2743" ph=" { " />
+                <marker date="1524971514657" expanded="false" signature="2755:2761" ph=" }" />
+                <marker date="1524971514657" expanded="true" signature="2812:3223" ph="{...}" />
+                <marker date="1524971514657" expanded="false" signature="2874:2940" ph="run() → {" />
+                <marker date="1524971514657" expanded="false" signature="3026:3041" ph="}" />
+                <marker date="1524971514657" expanded="true" signature="4510:4598" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -142,11 +115,12 @@
         <option value="$PROJECT_DIR$/src/Node.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/com/Kushcabbage/Main.java" />
         <option value="$PROJECT_DIR$/src/com/Kushcabbage/Waitclass.java" />
         <option value="$PROJECT_DIR$/src/com/Kushcabbage/LevenComparator.java" />
-        <option value="$PROJECT_DIR$/src/com/Kushcabbage/Song.java" />
+        <option value="$PROJECT_DIR$/src/com/Kushcabbage/GetMetadata.java" />
+        <option value="$PROJECT_DIR$/src/com/Kushcabbage/Main.java" />
         <option value="$PROJECT_DIR$/src/com/Kushcabbage/Leven.java" />
+        <option value="$PROJECT_DIR$/src/com/Kushcabbage/Song.java" />
       </list>
     </option>
   </component>
@@ -252,9 +226,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -446,18 +421,18 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25259793" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39983845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.52907914" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -474,20 +449,20 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/Kushcabbage/Leven.java</url>
-          <line>232</line>
+          <line>195</line>
           <properties />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/Kushcabbage/Leven.java</url>
-          <line>136</line>
-          <properties />
-          <option name="timeStamp" value="39" />
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="43" />
+      <option name="time" value="57" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((Leven)this).inputsong" custom="com.Kushcabbage.Leven" />
+        <watch expression="((Leven)this).inputartist" custom="com.Kushcabbage.Leven" />
+        <watch expression="possiblesongs" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Main.java">
@@ -495,9 +470,9 @@
         <state relative-caret-position="2982">
           <caret line="158" column="0" lean-forward="false" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1042#1043#0" expanded="true" />
-            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1042#1043#0" expanded="false" />
+            <element signature="e#1068#1069#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -519,18 +494,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Node.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="949">
-          <caret line="158" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1042#1043#0" expanded="true" />
-            <element signature="e#1068#1069#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Math.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -559,41 +522,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/LevenComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/goxr3plus/java-google-speech-api/V2.1/java-google-speech-api-V2.1-sources.jar!/com/darkprograms/speech/recognizer/GSpeechDuplex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Waitclass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="187" column="5" lean-forward="false" selection-start-line="169" selection-start-column="4" selection-end-line="187" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Song.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#334#335#0" expanded="true" />
-            <element signature="e#396#397#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -610,16 +538,182 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Waitclass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/goxr3plus/java-google-speech-api/V2.1/java-google-speech-api-V2.1-sources.jar!/com/darkprograms/speech/recognizer/GSpeechDuplex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="234" column="0" lean-forward="false" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/LevenComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="21" lean-forward="false" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/parser/ParseContext.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="22" column="11" lean-forward="false" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/io/TemporaryResources.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/io/ProxyInputStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/io/TaggedInputStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/io/TikaInputStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/config/ServiceLoader.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/detect/DefaultDetector.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/detect/CompositeDetector.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/tika-core-1.4.jar!/org/apache/tika/parser/AutoDetectParser.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/jre/lib/rt.jar!/sun/nio/ch/FileDispatcherImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="111" column="22" lean-forward="false" selection-start-line="111" selection-start-column="22" selection-end-line="111" selection-end-column="22" />
+          <folding>
+            <marker date="1524971514657" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1524971514657" expanded="false" signature="134:382" ph="..." />
+            <marker date="1524971514657" expanded="false" signature="556:567" ph=" { " />
+            <marker date="1524971514657" expanded="false" signature="586:592" ph=" }" />
+            <marker date="1524971514657" expanded="false" signature="618:629" ph=" { " />
+            <marker date="1524971514657" expanded="false" signature="641:647" ph=" }" />
+            <marker date="1524971514657" expanded="false" signature="680:691" ph=" { " />
+            <marker date="1524971514657" expanded="false" signature="703:709" ph=" }" />
+            <marker date="1524971514657" expanded="true" signature="785:832" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="920:974" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="1052:1100" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="1177:1238" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="1327:1382" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="1461:1523" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="1593:1635" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="1705:1750" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="1806:1841" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="1946:2005" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="2086:2129" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="2186:2215" ph="{...}" />
+            <marker date="1524971514657" expanded="true" signature="2296:2560" ph="{...}" />
+            <marker date="1524971514657" expanded="false" signature="2619:2630" ph=" { " />
+            <marker date="1524971514657" expanded="false" signature="2675:2681" ph=" }" />
+            <marker date="1524971514657" expanded="false" signature="2732:2743" ph=" { " />
+            <marker date="1524971514657" expanded="false" signature="2755:2761" ph=" }" />
+            <marker date="1524971514657" expanded="true" signature="2812:3223" ph="{...}" />
+            <marker date="1524971514657" expanded="false" signature="2874:2940" ph="run() → {" />
+            <marker date="1524971514657" expanded="false" signature="3026:3041" ph="}" />
+            <marker date="1524971514657" expanded="true" signature="4510:4598" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mpatric/mp3agic/Mp3File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/GetMetadata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Song.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="28" column="61" lean-forward="false" selection-start-line="28" selection-start-column="61" selection-end-line="28" selection-end-column="61" />
+          <folding>
+            <element signature="e#574#575#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Kushcabbage/Leven.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="136" column="0" lean-forward="false" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+        <state relative-caret-position="228">
+          <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1158#1159#0" expanded="true" />
-            <element signature="e#1185#1186#0" expanded="true" />
-            <element signature="e#6883#6884#0" expanded="true" />
-            <element signature="e#6920#6921#0" expanded="true" />
+            <element signature="e#8576#8577#0" expanded="true" />
+            <element signature="e#8613#8614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -702,7 +796,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: com.github.axet:java-flac-encoder:0.3.8</last-edited>
+          <last-edited>libs</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
