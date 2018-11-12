@@ -16,10 +16,9 @@ public class Song {
         else {
             this.artist = track.getParentFile().getParentFile().getName();
         }
-
-        trackname=track.getName();
-
-
+        //sanitised values - you cant say ( . & % )
+        trackname = track.getName().replace(".", "").replace("&", "and").replace("%", " percent").replace(":","").replace("_","");
+        trackname = trackname.substring(0, trackname.length() - 3).trim();
 
 
     }
