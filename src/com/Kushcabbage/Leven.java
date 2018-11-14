@@ -32,10 +32,11 @@ public class Leven {
     File[] artistlist;
     List<Song> possiblesongs=new ArrayList<>();
     String inputsong,inputartist;
-
+    Timeout timeout;
 
     public File itunesmusicfolder;
-
+    boolean delaythreadstarted;
+    Delayclass delayclass;
 
     public static void main(String[] args) {
         new Leven();
@@ -44,6 +45,12 @@ public class Leven {
      * Constructor
      */
     public Leven() {
+            delayclass=new Delayclass();
+            timeout=new Timeout();
+            Thread thread = new Thread(timeout);
+            thread.start();
+
+            delaythreadstarted =false;
 
         System.out.println("leven method");
         recursiveFiles(new File(itunesmusicdir),possiblesongs);
@@ -57,6 +64,9 @@ public class Leven {
         duplex.setLanguage("en");
 
         duplex.addResponseListener(new GSpeechResponseListener() {
+            Waitclass test=new Waitclass();
+            Thread threadtest=new Thread(test);
+
 
             public void onResponse(GoogleResponse googleResponse) {
                 String output = "";
@@ -83,6 +93,13 @@ public class Leven {
      */
     public void makeDecision(String output,GoogleResponse googleResponse) {
 
+        if (delaythreadstarted == false) {
+            Thread thread = new Thread(delayclass);
+            thread.start();
+            delaythreadstarted =true;
+        }
+
+
         output = output.trim();
         float outputconfidence=Float.parseFloat(googleResponse.getConfidence());
         if (!oldText.equals(output)){
@@ -91,7 +108,9 @@ public class Leven {
             return;}
         output=output.toLowerCase();
 
-
+        if(output.contains("cancel")){
+            System.exit(0);
+        }
 
         if(output.contains("play")&&output.contains("by")) {
             int diff=output.indexOf("by")+2-output.length();
@@ -151,10 +170,10 @@ public class Leven {
                     if (trackname.length() > 1 && trackname.substring(0, 2).toLowerCase().equals(inputsong.substring(0, 2).toLowerCase())) {
                         track.score -= 35;  //this is such a random value, i really dk what to say
                     }
-                    if (trackname.equals(inputsong)) {
+                    if (trackname.toLowerCase().equals(inputsong.toLowerCase())) {
                         track.score -= 40;
                     }
-                    if (artistname.equals(inputartist.toLowerCase())) {     ///Exact title and artist match!  (should probs be worth a lot of points)
+                    if (artistname.toLowerCase().equals(inputartist.toLowerCase())) {     ///Exact title and artist match!  (should probs be worth a lot of points)
                         track.score -= 40;
                     }
 
