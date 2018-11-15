@@ -2,11 +2,9 @@ package com.Kushcabbage;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -39,13 +37,22 @@ public class Leven {
     Delayclass delayclass;
 
     public static void main(String[] args) {
+
+
+
         new Leven();
     }
     /**
      * Constructor
      */
     public Leven() {
-            delayclass=new Delayclass();
+        try {
+            Getpathsfromfile();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        delayclass=new Delayclass();
             timeout=new Timeout();
             Thread thread = new Thread(timeout);
             thread.start();
@@ -53,7 +60,12 @@ public class Leven {
             delaythreadstarted =false;
 
         System.out.println("leven method");
-        recursiveFiles(new File(itunesmusicdir),possiblesongs);
+        try {
+            recursiveFiles(new File(itunesmusicdir), possiblesongs);
+        }catch (NullPointerException e){
+            System.out.println("Error in resource/paths.txt");
+            System.exit(-1);
+        }
 
         itunesmusicfolder=new File(itunesmusicdir);
 
@@ -151,9 +163,6 @@ public class Leven {
 
                     int score = calculate(removetextinbrackets(trackname), inputsong);  //levenshtein distance score
                     score += calculate(artistname, inputartist)*1.2;        //potentially multiply this score by some value before adding to introduce weighting
-
-
-
 
                     track.score = score;
                 }
@@ -267,6 +276,16 @@ public class Leven {
 
     }
 
+    void Getpathsfromfile() throws FileNotFoundException {
+        Scanner scan = new Scanner(new File("resource/paths.txt"));
+        ArrayList<String> lines=new ArrayList<>();
+        while(scan.hasNextLine()){
+            String line = scan.nextLine();
+            lines.add(line);
+        }
+        itunesmusicdir=lines.get(0);
+        itunesprogdir=lines.get(1);
+    }
 
     ////////completely copied algorithms for levnstehin vals/////
 
