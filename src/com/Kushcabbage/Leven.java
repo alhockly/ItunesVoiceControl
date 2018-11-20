@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import javax.crypto.spec.DESedeKeySpec;
 import javax.sound.sampled.LineUnavailableException;
 
 import com.darkprograms.speech.microphone.Microphone;
@@ -24,7 +25,7 @@ public class Leven {
     private final Microphone mic = new Microphone(FLACFileWriter.FLAC);
     private final GSpeechDuplex duplex = new GSpeechDuplex("AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw");
     String oldText = "";
-
+    String output="";
     String itunesmusicdir ="E:/Music/iTunes/iTunes Media/Music";
     String itunesprogdir="C:\\Program Files\\iTunes\\iTunes.exe";
     File[] artistlist;
@@ -33,8 +34,8 @@ public class Leven {
     Timeout timeout;
 
     public File itunesmusicfolder;
-    boolean delaythreadstarted;
-    Delayclass delayclass;
+
+
 
     public static void main(String[] args) {
 
@@ -51,15 +52,15 @@ public class Leven {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        delayclass=new Delayclass();
-            timeout=new Timeout();
-            Thread thread = new Thread(timeout);
-            thread.start();
-
-            delaythreadstarted =false;
-
         System.out.println("leven method");
+
+
+        timeout=new Timeout();
+        Thread thread = new Thread(timeout);
+        thread.start();
+
+
+
         try {
             recursiveFiles(new File(itunesmusicdir), possiblesongs);
         }catch (NullPointerException e){
@@ -68,8 +69,6 @@ public class Leven {
         }
 
         itunesmusicfolder=new File(itunesmusicdir);
-
-
         File folder=new File(itunesmusicdir);
         artistlist= folder.listFiles();
         //Duplex Configuration
@@ -81,15 +80,14 @@ public class Leven {
 
 
             public void onResponse(GoogleResponse googleResponse) {
-                String output = "";
+
 
                 //Get the response from Google Cloud
                 output = googleResponse.getResponse();
                 System.out.println(output);
-                if (output != null) {
+                if (output != null && googleResponse.isFinalResponse()) {
                     makeDecision(output,googleResponse);
-                } else
-                    System.out.println("Output was null");
+                }
             }
         });
 
@@ -105,11 +103,7 @@ public class Leven {
      */
     public void makeDecision(String output,GoogleResponse googleResponse) {
 
-        if (delaythreadstarted == false) {
-            Thread thread = new Thread(delayclass);
-            thread.start();
-            delaythreadstarted =true;
-        }
+
 
 
         output = output.trim();
@@ -125,6 +119,9 @@ public class Leven {
         }
 
         if(output.contains("play")&&output.contains("by")) {
+
+
+
             int diff=output.indexOf("by")+2-output.length();
             if(diff==0){
                 return;
