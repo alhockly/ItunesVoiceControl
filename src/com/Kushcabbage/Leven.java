@@ -127,7 +127,7 @@ public class Leven {
                 return;
             }
 
-            //should probs start another thread to wait for full response
+
 
 
             inputsong = googleResponse.getResponse().substring(output.indexOf("play") + 4, output.indexOf("by")).trim();
@@ -172,9 +172,9 @@ public class Leven {
                     String trackname = track.trackname.toLowerCase();
                     String artistname = track.artist.toLowerCase().trim();
 
-                    //if first letter of track==first letter of track said. maybe should use first 2 letters
+                    //if first letter of track==first letter of track said. maybe should use first 2 letters //Im thinking about removing this condition
                     if (trackname.length() > 1 && trackname.substring(0, 2).toLowerCase().equals(inputsong.substring(0, 2).toLowerCase())) {
-                        track.score -= 35;  //this is such a random value, i really dk what to say
+                        track.score -= 18;
                     }
                     if (trackname.toLowerCase().equals(inputsong.toLowerCase())) {
                         track.score -= 40;
@@ -185,16 +185,15 @@ public class Leven {
 
 
                     for (String word : inputsong.split(" ")) {
-                        String name = removetextinbrackets(possiblesongs.get(i).track.getName().toLowerCase());
                         //minus 20 eveerytime a word in input matches a word in trackname
-                        if (name.contains(word.toLowerCase())) {
-                            possiblesongs.get(i).score -= 20;
+                        if (trackname.contains(word.toLowerCase())) {
+                            track.score -= 20;
                             //return;
                         }
                     }
                     //if track artist name contains input artist
-                    if (possiblesongs.get(i).artist.toLowerCase().contains(inputartist.toLowerCase())) {         //if artist contains   should match word not substring
-                        possiblesongs.get(i).score -= 20;
+                    if (track.artist.toLowerCase().contains(inputartist.toLowerCase())) {         //if artist contains   should match word not substring
+                        track.score -= 20;
                     }
 
                 }
@@ -268,7 +267,7 @@ public class Leven {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //System.out.println("could not find "+song+" closing in 6 seconds");
+
 
 
     }
