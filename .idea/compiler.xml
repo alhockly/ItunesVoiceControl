@@ -9,7 +9,7 @@
         <module name="ItunesVoiceControl" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="ItunesVoiceControl" target="1.8" />
     </bytecodeTargetLevel>
   </component>

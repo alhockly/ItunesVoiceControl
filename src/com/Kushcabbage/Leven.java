@@ -1,9 +1,7 @@
 package com.Kushcabbage;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -16,10 +14,12 @@ import com.darkprograms.speech.recognizer.GSpeechResponseListener;
 import com.darkprograms.speech.recognizer.GoogleResponse;
 
 
+import com.fazecast.jSerialComm.SerialPort;
 import net.sourceforge.javaflacencoder.FLACFileWriter;
 
 
 public class Leven {
+    static SerialPort comPort;
 
     //private final TextToSpeech tts = new TextToSpeech();
     private final Microphone mic = new Microphone(FLACFileWriter.FLAC);
@@ -35,9 +35,14 @@ public class Leven {
 
     public File itunesmusicfolder;
 
-
+    static SerialDevice mcu;
 
     public static void main(String[] args) {
+
+
+
+        //comPort = SerialPort.getCommPorts()[3];
+        //comPort.setComPortTimeouts(SerialPort.TIMEOUT_NONBLOCKING, 0, 0);
 
 
 
@@ -91,8 +96,13 @@ public class Leven {
             }
         });
 
-
+        try {
+            Send("3");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         startSpeechRecognition();
+
 
     }
 
@@ -115,6 +125,7 @@ public class Leven {
         output=output.toLowerCase();
 
         if(output.contains("cancel")){
+            System.out.println("Voice control cancelled by user");
             System.exit(0);
         }
 
@@ -134,6 +145,12 @@ public class Leven {
             inputartist = googleResponse.getResponse().substring(output.indexOf("by") + 2, output.length()).trim();
 
             if (!inputsong.equals("") && !inputartist.equals("")) {
+                try {
+                    Send("5");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 boolean listready=false;
                 while(!listready){
                     try{
@@ -223,6 +240,15 @@ public class Leven {
                             item.score=item.track.getName().length()-inputsong.length();
                         }
                         Collections.sort(tightlist, new LevenComparator());
+                        try {
+                            Send("5");
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                         openfile(tightlist.get(0));
                     }
 
@@ -250,6 +276,50 @@ public class Leven {
         }
         return name.trim();
     }
+
+    void Send(String c) throws IOException {
+        //3 for listening colour, 5 for reset
+        //3 reads as 51, 255 or 240
+
+        //5 reads as 53, 251 or 243
+
+        //SerialPort comPort = SerialPort.getCommPorts()[3];
+        //comPort.setComPortTimeouts(SerialPort.TIMEOUT_NONBLOCKING, 10, 10);
+
+
+        /*try {
+
+            byte[] msg= c.getBytes();
+            comPort.writeBytes(msg,1);
+
+        } catch (Exception e) { e.printStackTrace(); }
+        comPort.closePort();*/
+
+        String command = "powershell.exe  G:\\JAVA\\ItunesVoiceControl\\send"+c+".ps1";
+
+        // Executing the command
+        Process powerShellProcess = Runtime.getRuntime().exec(command);
+        // Getting the results
+        powerShellProcess.getOutputStream().close();
+        String line;
+        System.out.println("Standard Output:");
+        BufferedReader stdout = new BufferedReader(new InputStreamReader(
+                powerShellProcess.getInputStream()));
+        while ((line = stdout.readLine()) != null) {
+            System.out.println(line);
+        }
+        stdout.close();
+        System.out.println("Standard Error:");
+        BufferedReader stderr = new BufferedReader(new InputStreamReader(
+                powerShellProcess.getErrorStream()));
+        while ((line = stderr.readLine()) != null) {
+            System.out.println(line);
+        }
+        stderr.close();
+        System.out.println("Done");
+
+    }
+
 
 
     void openfile(Song track){

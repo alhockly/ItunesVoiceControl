@@ -9,7 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="Maven: com.fazecast:jSerialComm:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.goxr3plus:java-google-speech-api:V2.1" level="project" />
     <orderEntry type="library" name="Maven: com.github.axet:java-flac-encoder:0.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20150729" level="project" />
