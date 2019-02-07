@@ -2,6 +2,7 @@ package com.Kushcabbage;
 
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -126,6 +127,14 @@ public class Leven {
 
         if(output.contains("cancel")){
             System.out.println("Voice control cancelled by user");
+            try {
+                Send("5");
+                TimeUnit.SECONDS.sleep(1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.exit(0);
         }
 
@@ -163,8 +172,6 @@ public class Leven {
                 }
                 for (Song track : possiblesongs) {
 
-
-
                     String trackname = track.trackname.toLowerCase();
 
                     String artistname = track.artist.toLowerCase().trim();
@@ -176,7 +183,7 @@ public class Leven {
                     }
 
                     int score = calculate(removetextinbrackets(trackname), inputsong);  //levenshtein distance score
-                    score += calculate(artistname, inputartist)*1.2;        //potentially multiply this score by some value before adding to introduce weighting
+                    score += calculate(artistname, inputartist);        //potentially multiply this score by some value before adding to introduce weighting
 
                     track.score = score;
                 }
@@ -189,28 +196,32 @@ public class Leven {
                     String trackname = track.trackname.toLowerCase();
                     String artistname = track.artist.toLowerCase().trim();
 
+                    //if track name isnt an exact match multiply score by 150%
+                    if (!trackname.toLowerCase().equals(inputsong.toLowerCase())) {
+                        track.score+=(track.score/2);
+                    }
+
                     //if first letter of track==first letter of track said. maybe should use first 2 letters //Im thinking about removing this condition
                     if (trackname.length() > 1 && trackname.substring(0, 2).toLowerCase().equals(inputsong.substring(0, 2).toLowerCase())) {
-                        track.score -= 18;
+                        //track.score -= 18;
                     }
-                    if (trackname.toLowerCase().equals(inputsong.toLowerCase())) {
-                        track.score -= 40;
-                    }
+
+
                     if (artistname.toLowerCase().equals(inputartist.toLowerCase())) {     ///Exact title and artist match!  (should probs be worth a lot of points)
-                        track.score -= 40;
+                        //track.score -= 40;
                     }
 
 
                     for (String word : inputsong.split(" ")) {
                         //minus 20 eveerytime a word in input matches a word in trackname
                         if (trackname.contains(word.toLowerCase())) {
-                            track.score -= 20;
+                            //track.score -= 20;
                             //return;
                         }
                     }
                     //if track artist name contains input artist
                     if (track.artist.toLowerCase().contains(inputartist.toLowerCase())) {         //if artist contains   should match word not substring
-                        track.score -= 20;
+                        //track.score -= 20;
                     }
 
                 }
@@ -229,28 +240,53 @@ public class Leven {
                         }
                     }
 
-                    if(tightlist.size()==1) {
-                        openfile(tightlist.get(0));
-                    }else{
-
-
-                        //some ninja code to make ultra sure the right song is played
-                        for(Song item:tightlist){
-                            item.score=0;
-                            item.score=item.track.getName().length()-inputsong.length();
+                    ///if the right song probably wasnt found just search youtube
+                    //(This also has the advantage of spell check)
+                    if(possiblesongs.get(0).score>8){
+                        System.out.println("opening in youtube");
+                        System.out.println("top score from local was "+possiblesongs.get(0).toString());
+                        for(int i=1;i<10;i++){
+                            System.out.println(possiblesongs.get(i).toString());
                         }
-                        Collections.sort(tightlist, new LevenComparator());
                         try {
-                            Send("5");
-                            TimeUnit.SECONDS.sleep(1);
+
+                            new GetOnline().OpenYoutube(inputsong,inputartist);
                         } catch (IOException e) {
                             e.printStackTrace();
-                        } catch (InterruptedException e) {
+                        } catch (URISyntaxException e) {
                             e.printStackTrace();
                         }
 
-                        openfile(tightlist.get(0));
+
+                    }else{
+                        if(tightlist.size()==1) {
+                            openfile(tightlist.get(0));
+                        }else{
+
+                            //some ninja code to make ultra sure the right song is played
+                            /*for(Song item:tightlist){
+                                item.score=0;
+                                item.score=item.track.getName().length()-inputsong.length();
+                            }*/
+                            Collections.sort(tightlist, new LevenComparator());
+                            /*try {
+                                Send("5");
+                                TimeUnit.SECONDS.sleep(1);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }*/
+
+                            openfile(tightlist.get(0));
+                        }
+
+
+
+
                     }
+
+
 
 
 
