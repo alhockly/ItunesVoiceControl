@@ -1,6 +1,6 @@
 *.class
 /target/
-
+.idea
 target/classes/com/Kushcabbage/Main$1.class
 target/classes/com/Kushcabbage/Main$1.class
 target/classes/com/Kushcabbage/Leven$1.class
