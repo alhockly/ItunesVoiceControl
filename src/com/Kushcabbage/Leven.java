@@ -6,7 +6,6 @@ import java.net.URISyntaxException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import javax.crypto.spec.DESedeKeySpec;
 import javax.sound.sampled.LineUnavailableException;
 
 import com.darkprograms.speech.microphone.Microphone;
@@ -15,12 +14,11 @@ import com.darkprograms.speech.recognizer.GSpeechResponseListener;
 import com.darkprograms.speech.recognizer.GoogleResponse;
 
 
-import com.fazecast.jSerialComm.SerialPort;
 import net.sourceforge.javaflacencoder.FLACFileWriter;
 
 
 public class Leven {
-    static SerialPort comPort;
+
 
     //private final TextToSpeech tts = new TextToSpeech();
     private final Microphone mic = new Microphone(FLACFileWriter.FLAC);
@@ -36,7 +34,7 @@ public class Leven {
 
     public File itunesmusicfolder;
 
-    static SerialDevice mcu;
+    SerialThread serialthread;
 
     public static void main(String[] args) {
 
@@ -53,6 +51,11 @@ public class Leven {
      * Constructor
      */
     public Leven() {
+
+
+        serialthread = new SerialThread();
+        serialthread.start();
+
         try {
             Getpathsfromfile();
         } catch (FileNotFoundException e) {
@@ -98,7 +101,8 @@ public class Leven {
         });
 
         try {
-            Send("3");
+            //Send("3");
+            serialthread.Send("3");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -128,7 +132,8 @@ public class Leven {
         if(output.contains("cancel")){
             System.out.println("Voice control cancelled by user");
             try {
-                Send("5");
+                serialthread.Send("5");
+                //Send("5");
                 TimeUnit.SECONDS.sleep(1);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -138,8 +143,23 @@ public class Leven {
             System.exit(0);
         }
 
-        if(output.contains("play")&&output.contains("by")) {
 
+        if(output.contains("turn the lights")){
+            try {
+                if(output.contains("on")){
+                    Send("5");
+                    System.exit(0);
+                }
+                if(output.contains("off")){
+                    Send("0");
+                    System.exit(0);}
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        if(output.contains("play")&&output.contains("by")) {
 
 
             int diff=output.indexOf("by")+2-output.length();
@@ -148,14 +168,13 @@ public class Leven {
             }
 
 
-
-
             inputsong = googleResponse.getResponse().substring(output.indexOf("play") + 4, output.indexOf("by")).trim();
             inputartist = googleResponse.getResponse().substring(output.indexOf("by") + 2, output.length()).trim();
 
             if (!inputsong.equals("") && !inputartist.equals("")) {
                 try {
-                    Send("5");
+                    serialthread.Send("5");
+                    //Send("5");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -182,8 +201,8 @@ public class Leven {
                         artistname = artistname.substring(0, artistname.indexOf("ft"));
                     }
 
-                    int score = calculate(removetextinbrackets(trackname), inputsong);  //levenshtein distance score
-                    score += calculate(artistname, inputartist);        //potentially multiply this score by some value before adding to introduce weighting
+                    int score = calculateLeven(removetextinbrackets(trackname), inputsong);  //levenshtein distance score
+                    score += calculateLeven(artistname.replace(" ",""), inputartist.replace(" ",""));   //potentially multiply this score by some value before adding to introduce weighting
 
                     track.score = score;
                 }
@@ -228,73 +247,68 @@ public class Leven {
 
                 Collections.sort(possiblesongs, new LevenComparator());
 
-                    /////if there is is more than one song with the lowest score more refinement is needed
-                    List<Song> tightlist= new ArrayList<>();
-                    float lowest=possiblesongs.get(0).score;
-                    for(Song song:possiblesongs){
-                        if(song.score==lowest){
-                            tightlist.add(song);
-                        }
-                        if(song.score>lowest){
-                            break;
-                        }
+                /////if there is is more than one song with the lowest score more refinement is needed
+                List<Song> tightlist= new ArrayList<>();
+                float lowest=possiblesongs.get(0).score;
+                for(Song song:possiblesongs){
+                    if(song.score==lowest){
+                        tightlist.add(song);
                     }
+                    if(song.score>lowest){
+                        break;
+                    }
+                }
 
-                    ///if the right song probably wasnt found just search youtube
-                    //(This also has the advantage of spell check)
-                    if(possiblesongs.get(0).score>8){
-                        System.out.println("opening in youtube");
-                        System.out.println("top score from local was "+possiblesongs.get(0).toString());
-                        for(int i=1;i<10;i++){
-                            System.out.println(possiblesongs.get(i).toString());
-                        }
-                        try {
+                ///if the right song probably wasnt found just search youtube
+                //(This also has the advantage of spell check)
+                int onlineThreshold=10;
+                if(possiblesongs.get(0).score>onlineThreshold){                                               ///THRESHOLD
+                    System.out.println("Opening on YouTube");
+                    System.out.println("top score from local was "+possiblesongs.get(0).toString()+"\t Threshold: "+onlineThreshold);
+                    for(int i=1;i<10;i++){
+                        System.out.println(possiblesongs.get(i).toString());
+                    }
+                    try {
+                        new Online().OpenYoutube(inputsong,inputartist);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("returning to hotword recog...");
+                    System.exit(0);
 
-                            new GetOnline().OpenYoutube(inputsong,inputartist);
+
+                }else{
+                    if(tightlist.size()==1) {
+                        openfile(tightlist.get(0));
+                    }else{
+
+                        //some ninja code to make ultra sure the right song is played
+                        /*for(Song item:tightlist){
+                            item.score=0;
+                            item.score=item.track.getName().length()-inputsong.length();
+                        }*/
+                        Collections.sort(tightlist, new LevenComparator());
+                        /*try {
+                            Send("5");
+                            TimeUnit.SECONDS.sleep(1);
                         } catch (IOException e) {
                             e.printStackTrace();
-                        } catch (URISyntaxException e) {
+                        } catch (InterruptedException e) {
                             e.printStackTrace();
-                        }
+                        }*/
 
-
-                    }else{
-                        if(tightlist.size()==1) {
-                            openfile(tightlist.get(0));
-                        }else{
-
-                            //some ninja code to make ultra sure the right song is played
-                            /*for(Song item:tightlist){
-                                item.score=0;
-                                item.score=item.track.getName().length()-inputsong.length();
-                            }*/
-                            Collections.sort(tightlist, new LevenComparator());
-                            /*try {
-                                Send("5");
-                                TimeUnit.SECONDS.sleep(1);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }*/
-
-                            openfile(tightlist.get(0));
-                        }
-
-
-
-
+                        openfile(tightlist.get(0));
                     }
 
 
 
 
+                }
 
 
             }
-        }
-        else{
-            //System.out.println("Not entered on any else if statement");
         }
 
     }
@@ -315,21 +329,6 @@ public class Leven {
 
     void Send(String c) throws IOException {
         //3 for listening colour, 5 for reset
-        //3 reads as 51, 255 or 240
-
-        //5 reads as 53, 251 or 243
-
-        //SerialPort comPort = SerialPort.getCommPorts()[3];
-        //comPort.setComPortTimeouts(SerialPort.TIMEOUT_NONBLOCKING, 10, 10);
-
-
-        /*try {
-
-            byte[] msg= c.getBytes();
-            comPort.writeBytes(msg,1);
-
-        } catch (Exception e) { e.printStackTrace(); }
-        comPort.closePort();*/
 
         String command = "powershell.exe  G:\\JAVA\\ItunesVoiceControl\\send"+c+".ps1";
 
@@ -352,7 +351,7 @@ public class Leven {
             System.out.println(line);
         }
         stderr.close();
-        System.out.println("Done");
+        //System.out.println("Done");
 
     }
 
@@ -391,7 +390,7 @@ public class Leven {
 
     ////////completely copied algorithms for levnstehin vals/////
 
-    static int calculate(String x, String y) {
+    static int calculateLeven(String x, String y) {
 
         int[][] dp = new int[x.length() + 1][y.length() + 1];
 

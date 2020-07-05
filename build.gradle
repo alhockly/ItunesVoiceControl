@@ -1,0 +1,53 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+sourceSets{
+    main{
+        java{
+            srcDir "src"
+        }
+    }
+}
+
+buildscript {
+    ext.kotlin_version = '1.0.2'
+    //...
+
+}
+
+ext.kotlinVersion = "1.3.72"
+
+dependencies {
+    compile "org.seleniumhq.selenium:selenium-server:3.0.1"
+    compile "com.github.goxr3plus:java-google-speech-api:V2.1"
+    compile "com.google.guava:guava:22.0"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+}
+
+
+task execute(type:JavaExec) {
+    main = 'com.Kushcabbage.Spotify'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.Kushcabbage.Leven'
+    }
+    baseName = project.name + '-fatJar'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from sourceSets.main.allSource
+    with jar
+}
+
